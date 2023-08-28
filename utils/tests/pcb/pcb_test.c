@@ -9,9 +9,8 @@ context (pcb) {
 
     describe("PCB") {
         it("program counter should be 1 and 2"){
-            should_int(pcb_get_program_counter(pcb)) be equal to(1);
-            should_int(pcb_get_program_counter(pcb2)) be equal to(2);
+            should_int(pcb_get_pid(pcb)) be equal to(1);
+            should_int(pcb_get_pid(pcb2)) be equal to(2);
         } end
     } end
-
 }
