@@ -5,6 +5,8 @@
 #include <commons/collections/dictionary.h>
 #include <pcb/pcb.h>
 
+static int global_pid = 0;
+
 struct pcb {
     int pid;
     int program_counter;
@@ -12,8 +14,6 @@ struct pcb {
     t_dictionary* cpu_registers;
     t_list* table_open_files;
 };
-
-static int global_pid = 0;
 
 /**
  * @NAME: pcb_create
