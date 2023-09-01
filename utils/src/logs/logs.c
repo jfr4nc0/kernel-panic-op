@@ -39,7 +39,7 @@ t_log* iniciar_logger(char* pathLog, int moduloPos) {
 
     t_log *logger;
 
-    logger = CHECK_NULL(log_create(pathLog, modulo, mostrarConsola, log_level));
+    logger = log_create(pathLog, modulo, mostrarConsola, log_level);
 
     return logger;
 }

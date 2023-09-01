@@ -13,11 +13,11 @@
 
 #define CHECK_NULL(result) ({ ((result) == NULL ? \
             ({fprintf(stderr,__ERROR,__FILE__,__LINE__,strerror(errno)); \
-            exit(-1);NULL;}) : (result)); })
+            exit(EXIT_FAILURE);NULL;}) : (result)); })
 
 #define CHECK_INT(result) ({ int __val = (result); (__val == -1 ? \
             ({fprintf(stderr,__ERROR,__FILE__,__LINE__,strerror(errno)); \
-            exit(-1);-1;}) : __val); })
+            exit(EXIT_FAILURE);-1;}) : __val); })
 
 #if __STDC_VERSION__ < 201112L || __STDC_NO_ATOMICS__ == 1
 #error "FATAL ERROR: Atomics not supported!"

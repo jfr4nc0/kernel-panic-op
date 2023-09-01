@@ -10,7 +10,8 @@
       "request": "launch",
       "program": "${workspaceFolder}/bin/${workspaceFolderBasename}.out",
       "args": [
-        // TODO: Agregar los argumentos que se necesiten
+        "./config/inicial.config",
+        "./logs/kernel.log"
       ],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
