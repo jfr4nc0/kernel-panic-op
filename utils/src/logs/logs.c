@@ -46,12 +46,5 @@ t_log* iniciar_logger(char* pathLog, int moduloPos) {
         exit(1);
     }
     free(directorioActual);
-    /*
-    if (valoresPorDefecto) {
-    	log_warning(logger, cantidad_strings_a_mostrar(4), D__LOG_CREADO, "-> ", pathLog, " con valores por defecto");
-    }else {
-        log_debug(logger, cantidad_strings_a_mostrar(3), D__LOG_CREADO, "-> ", pathLog);
-    }
-	*/
     return logger;
 }
