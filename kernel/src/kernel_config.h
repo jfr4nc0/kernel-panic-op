@@ -6,6 +6,7 @@
 #include <pthread.h>
 #include <commons/collections/dictionary.h>
 
+t_log* logger;
 
 
 

@@ -1,13 +1,12 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <pthread.h>
 #include "console.h"
+#include "kernel_config.h"
 
 int main(int argc, char* argv[]) {
 
     // check_arguments(argc,argv[],2);
+    t_dict
 
-    int server = init_server
+    int server = init_server(config, logger);
 
     //TODO Implementar config inicial, leida por archivo .config
     //TODO Implementar logger

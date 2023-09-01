@@ -6,6 +6,14 @@
 
 typedef struct pcb t_pcb;
 
+typedef enum {
+    ENUM_NEW,
+    ENUM_READY,
+    ENUM_EXECUTING,
+    ENUM_BLOCKED,
+    ENUM_EXIT,
+}pcb_estado;
+
 /**
  * @NAME: pcb_create
  * @DESC: Crea una instancia de "t_pcb".
