@@ -7,3 +7,8 @@ int check_arguments(int argc, char* argv[]){
     }
     return 0;
 }
+
+void cleanup(){
+    printf("Bye!");
+}
+

@@ -1,5 +1,5 @@
 # Libraries
-LIBS=utils commons
+LIBS=utils readline pthread commons
 
 # Custom libraries' paths
 SHARED_LIBPATHS=
@@ -10,7 +10,7 @@ CDEBUG=-g -Wall -DDEBUG -fcommon -fdiagnostics-color=always
 CRELEASE=-O3 -Wall -DNDEBUG -fcommon
 
 # Arguments when executing with start, memcheck or helgrind
-ARGS=
+ARGS=/home/utnso/workspace/kernel-panic-op/kernel/config/inicial.config /home/utnso/workspace/kernel-panic-op/kernel/logs/kernel.log
 
 # Valgrind flags
 MEMCHECK_FLAGS=--track-origins=yes

@@ -1,6 +1,6 @@
 #include "console.h"
 
-void initialize_console(void *arg) {
+void* initialize_console(void *arg) {
     while (1) {
         char *input = readline("> ");  // Lee la entrada del usuario
         if (input) {

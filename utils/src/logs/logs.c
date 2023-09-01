@@ -32,19 +32,14 @@ bool obtener_valores_para_logger(int moduloPos, bool *mostrarConsola, t_log_leve
 }
 
 t_log* iniciar_logger(char* pathLog, int moduloPos) {
-        bool mostrarConsola = true;
-        t_log_level log_level;
-        char* modulo;
-        bool valoresPorDefecto = obtener_valores_para_logger(moduloPos, &mostrarConsola, &log_level, &modulo);
+    bool mostrarConsola = true;
+    t_log_level log_level;
+    char* modulo;
+    bool valoresPorDefecto = obtener_valores_para_logger(moduloPos, &mostrarConsola, &log_level, &modulo);
 
     t_log *logger;
-    char *directorioActual = getcwd();
 
-    if (( logger = log_create(pathLog, modulo, mostrarConsola, log_level)) == NULL ) {
-        // printf(cantidad_strings_a_mostrar(3), E__LOGGER_CREATE, directorioActual, ENTER);
-        free(directorioActual);
-        exit(1);
-    }
-    free(directorioActual);
+    logger = CHECK_NULL(log_create(pathLog, modulo, mostrarConsola, log_level));
+
     return logger;
 }

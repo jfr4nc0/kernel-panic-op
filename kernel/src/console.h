@@ -1,7 +1,14 @@
 #ifndef CONSOLE_H_
 #define CONSOLE_H_
 
-void initialize_console();
+#include <stdlib.h>
+#include <stdio.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+#include <stddef.h>
+
+
+void* initialize_console();
 
 void create_process();
 

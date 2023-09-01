@@ -1,10 +1,16 @@
-#include "console.h"
 #include "kernel_config.h"
 
 int main(int argc, char* argv[]) {
 
-    // check_arguments(argc,argv[],2);
-    t_dict
+    atexit(cleanup);
+
+    if(argc != 2){
+        fprintf(stderr,__ERROR,__FILE__,__LINE__,strerror(errno));
+        exit(EXIT_FAILURE);
+    }
+
+    t_log* logger = iniciar_logger(argv[0],ENUM_KERNEL);
+    t_config* config = config_create(argv[1]);
 
     int server = init_server(config, logger);
 
@@ -20,5 +26,5 @@ int main(int argc, char* argv[]) {
     // Espera a que el hilo pthread termine
     pthread_join(p_terminal, NULL);
 
-    return 0;
+    exit(EXIT_SUCCESS);
 }

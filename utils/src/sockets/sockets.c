@@ -33,8 +33,8 @@ int init_server(t_config* config, t_log* logger) {
 
 int wait_client(int socket_server, t_log* logger) {
     uint32_t handshake;
-    uint32_t resultOk = 0;
-    uint32_t resultError = -1;
+    // uint32_t resultOk = 0;
+    // uint32_t resultError = -1;
 
     // Aceptamos un nuevo cliente
     int client = accept(socket_server, NULL, NULL);

@@ -11,13 +11,13 @@
 // Sirve para catchear errores genericos con informacion sobre los mismos
 #define __ERROR "ERROR (%s:%d) -- %s\n" 
 
-#define CHECK(result, logger) \
-    do { \
-        if ((result) == NULL || (result) == -1) { \
-            log_error((logger),__ERROR,__FILE__,__LINE__,strerror(errno)); \
-            exit(EXIT_FAILURE); \
-            } \
-    } while(0)
+#define CHECK_NULL(result) ({ ((result) == NULL ? \
+            ({fprintf(stderr,__ERROR,__FILE__,__LINE__,strerror(errno)); \
+            exit(-1);NULL;}) : (result)); })
+
+#define CHECK_INT(result) ({ int __val = (result); (__val == -1 ? \
+            ({fprintf(stderr,__ERROR,__FILE__,__LINE__,strerror(errno)); \
+            exit(-1);-1;}) : __val); })
 
 #if __STDC_VERSION__ < 201112L || __STDC_NO_ATOMICS__ == 1
 #error "FATAL ERROR: Atomics not supported!"
@@ -28,4 +28,6 @@ typedef enum{
 }exception_code;
 
 int check_arguments(int argc, char* argv[]);
+void cleanup();
+
 #endif
