@@ -23,7 +23,7 @@ bool obtener_valores_para_logger(int moduloPos, bool *mostrarConsola, t_log_leve
 t_log* iniciar_logger(char* pathLog, int moduloPos, bool mostrarConsola);
 
 
-#define _SERVER_STARTED "Se inicio el servidor del modulo %s correctamente!"
+#define _SERVER_STARTED "Se inicio el servidor del modulo %s, en el puerto %s"
 #define E_CONFIG_PROPERTY "Propiedad inexistente en el archivo de configuracion"
 
 #endif

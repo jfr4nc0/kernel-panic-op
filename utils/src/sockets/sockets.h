@@ -25,7 +25,7 @@ typedef struct package{
     t_buffer* buffer;
 }t_package;
 
-int init_server(t_config* config, t_log* logger);
+int init_server(t_config* config, char* modulo, char* key_puerto, t_log* logger);
 int wait_client(int socket_server, t_log* logger);
 int receive_operation(int client);
 void* receive_buffer(int* size, int client);

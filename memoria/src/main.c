@@ -11,7 +11,7 @@ int main(int argc, char* argv[]) {
     CHECK_NULL(config = config_create(argv[1]));
     CHECK_NULL(logger = iniciar_logger(argv[2],ENUM_CPU, false));
 
-    CHECK_INT(server = init_server(config, logger));
+    CHECK_INT(server = init_server(config, "MEMORIA", "PUERTO_ESCUCHA",logger));
     log_info(logger,_SERVER_STARTED, "MEMORIA");
 
     exit(EXIT_SUCCESS);

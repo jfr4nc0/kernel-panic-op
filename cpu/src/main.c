@@ -11,8 +11,8 @@ int main(int argc, char* argv[]) {
     CHECK_NULL(config = config_create(argv[1]));
     CHECK_NULL(logger = iniciar_logger(argv[2],ENUM_CPU, false));
 
-    CHECK_INT(server = init_server(config, logger));
-    log_info(logger,_SERVER_STARTED, "CPU");
+    CHECK_INT(server_dispatcher = init_server(config, "CPU DISPATCHER","PUERTO_ESCUCHA_DISPATCH" , logger));
+    CHECK_INT(server_interrupter = init_server(config, "CPU INTERRUPTER","PUERTO_ESCUCHA_INTERRUPT" , logger));
 
     exit(EXIT_SUCCESS);
 }

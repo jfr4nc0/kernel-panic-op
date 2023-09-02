@@ -1,15 +1,11 @@
 #include "sockets.h"
 
-int init_server(t_config* config, t_log* logger) {
+int init_server(t_config* config, char* modulo,char* key_puerto, t_log* logger) {
     int socket_server;
     char* puerto;
 
-    if(config_has_property(config,"PUERTO_ESCUCHA")){
-        puerto = config_get_string_value(config, "PUERTO_ESCUCHA");
-    } else if (config_has_property(config,"PUERTO_ESCUCHA_DISPATCH")){
-        puerto = config_get_string_value(config, "PUERTO_ESCUCHA_DISPATCH");
-    } else if (config_has_property(config,"PUERTO_ESCUCHA_INTERRUPT")){
-        puerto = config_get_string_value(config, "PUERTO_ESCUCHA_INTERRUPT");
+    if(config_has_property(config,key_puerto)){
+        CHECK_NULL(puerto = config_get_string_value(config, key_puerto));
     } else {
         log_error(logger,E_CONFIG_PROPERTY);
         exit(EXIT_FAILURE);
@@ -38,6 +34,8 @@ int init_server(t_config* config, t_log* logger) {
     listen(socket_server, SOMAXCONN);
 
     freeaddrinfo(servinfo);
+
+    log_info(logger,_SERVER_STARTED,modulo,puerto);
 
     return socket_server;
 }

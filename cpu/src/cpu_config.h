@@ -12,6 +12,7 @@
 
 t_config* config;
 t_log* logger;
-int server;
+int server_dispatcher;
+int server_interrupter;
 
 #endif
