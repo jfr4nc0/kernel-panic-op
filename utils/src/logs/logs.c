@@ -31,8 +31,7 @@ bool obtener_valores_para_logger(int moduloPos, bool *mostrarConsola, t_log_leve
     return false;
 }
 
-t_log* iniciar_logger(char* pathLog, int moduloPos) {
-    bool mostrarConsola = true;
+t_log* iniciar_logger(char* pathLog, int moduloPos, bool mostrarConsola) {
     t_log_level log_level;
     char* modulo;
     bool valoresPorDefecto = obtener_valores_para_logger(moduloPos, &mostrarConsola, &log_level, &modulo);

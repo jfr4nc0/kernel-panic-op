@@ -1,5 +1,5 @@
 # Libraries
-LIBS=utils commons
+LIBS=utils pthread commons
 
 # Custom libraries' paths
 SHARED_LIBPATHS=
@@ -10,7 +10,7 @@ CDEBUG=-g -Wall -DDEBUG -fcommon -fdiagnostics-color=always
 CRELEASE=-O3 -Wall -DNDEBUG -fcommon
 
 # Arguments when executing with start, memcheck or helgrind
-ARGS=
+ARGS=./config/inicial.config ./logs/cpu.log
 
 # Valgrind flags
 MEMCHECK_FLAGS=--track-origins=yes

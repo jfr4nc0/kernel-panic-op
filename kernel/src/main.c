@@ -10,19 +10,12 @@ int main(int argc, char* argv[]) {
     }
 
     CHECK_NULL(config = config_create(argv[1]));
-    CHECK_NULL(logger = iniciar_logger(argv[2],ENUM_KERNEL));
+    CHECK_NULL(logger = iniciar_logger(argv[2],ENUM_KERNEL, false));
 
-    int server = init_server(config, logger);
-
-    //TODO Implementar config inicial, leida por archivo .config
-    //TODO Implementar logger
     //TODO Implementar conexiones con modulos CPU, File System y Memoria
 
-    pthread_t p_terminal;
-    if(pthread_create(&p_terminal, NULL, initialize_console, NULL) != 0){
-        perror("Error al crear al hilo de consola");
-        return 1;
-    }
+    CHECK_INT(pthread_create(&p_terminal, NULL, initialize_console, NULL));
+
     // Espera a que el hilo pthread termine
     pthread_join(p_terminal, NULL);
 

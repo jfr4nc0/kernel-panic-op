@@ -9,6 +9,7 @@
 #include <commons/collections/list.h>
 #include <commons/log.h>
 #include <errors/errors.h>
+#include <logs/logs.h>
 
 typedef enum {
     TEST

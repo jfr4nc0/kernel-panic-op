@@ -2,7 +2,18 @@
 
 int init_server(t_config* config, t_log* logger) {
     int socket_server;
-    char* puerto = config_get_string_value(config, "PUERTO_LOCAL");
+    char* puerto;
+
+    if(config_has_property(config,"PUERTO_ESCUCHA")){
+        puerto = config_get_string_value(config, "PUERTO_ESCUCHA");
+    } else if (config_has_property(config,"PUERTO_ESCUCHA_DISPATCH")){
+        puerto = config_get_string_value(config, "PUERTO_ESCUCHA_DISPATCH");
+    } else if (config_has_property(config,"PUERTO_ESCUCHA_INTERRUPT")){
+        puerto = config_get_string_value(config, "PUERTO_ESCUCHA_INTERRUPT");
+    } else {
+        log_error(logger,E_CONFIG_PROPERTY);
+        exit(EXIT_FAILURE);
+    }
 
     struct addrinfo hints, *servinfo;
 
@@ -33,15 +44,13 @@ int init_server(t_config* config, t_log* logger) {
 
 int wait_client(int socket_server, t_log* logger) {
     uint32_t handshake;
-    // uint32_t resultOk = 0;
-    // uint32_t resultError = -1;
+    uint32_t resultOk = 0;
+    uint32_t resultError = -1;
+
 
     // Aceptamos un nuevo cliente
-    int client = accept(socket_server, NULL, NULL);
-    // if (client == -1) {
-    //     socket_server(logger, E__CONEXION_ACEPTAR);
-    //     return -1;
-    // }
+    int client; 
+    CHECK_INT(client = accept(socket_server, NULL, NULL));
 
     log_debug(logger, "Se realiza un handshake de parte del servidor");
 
