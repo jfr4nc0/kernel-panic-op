@@ -24,6 +24,7 @@ t_log* iniciar_logger(char* pathLog, int moduloPos, bool mostrarConsola);
 
 
 #define _SERVER_STARTED "Se inicio el servidor del modulo %s, en el puerto %s"
+#define _CLIENT_STARTED "Se establecio un cliente con el servidor de %s, en el puerto %s"
 #define E_CONFIG_PROPERTY "Propiedad inexistente en el archivo de configuracion"
 
 #endif

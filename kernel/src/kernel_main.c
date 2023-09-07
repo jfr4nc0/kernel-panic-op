@@ -12,7 +12,11 @@ int main(int argc, char* argv[]) {
     CHECK_NULL(config = config_create(argv[1]));
     CHECK_NULL(logger = iniciar_logger(argv[2],ENUM_KERNEL, false));
 
-    //TODO Implementar conexiones con modulos CPU, File System y Memoria
+    // Manejar las conexiones con hilos
+    CHECK_INT(client_memory = build_connection(config,"MEMORIA",logger));
+    CHECK_INT(client_filesystem = build_connection(config,"FILESYSTEM",logger));
+    CHECK_INT(client_cpu_dispatcher = build_connection(config,"CPU_DISPATCH",logger));
+    CHECK_INT(client_cpu_interrupter = build_connection(config,"CPU_INTERRUPT",logger));
 
     CHECK_INT(pthread_create(&p_terminal, NULL, initialize_console, NULL));
 

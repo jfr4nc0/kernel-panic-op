@@ -14,5 +14,6 @@ t_config* config;
 t_log* logger;
 int server;
 
+int client_filesystem;
 
 #endif

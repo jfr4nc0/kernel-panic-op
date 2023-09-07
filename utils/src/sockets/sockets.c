@@ -65,6 +65,53 @@ int wait_client(int socket_server, t_log* logger) {
     return client;
 }
 
+int build_connection(t_config* config, char* modulo, t_log* logger) {
+    char* key_ip = string_new("IP_");
+    char* key_puerto = string_new("PUERTO_");
+    char* ip;
+    char* puerto;
+    string_append(&key_ip,modulo);
+    string_append(&key_puerto,modulo);
+    CHECK_INT(ip = (config_has_property(config,ip) ? config_get_string_value(config,key_ip):-1));
+    CHECK_INT(puerto = (config_has_property(config,puerto) ? config_get_string_value(config,key_puerto):-1));
+
+    return create_connection(ip, puerto, modulo, logger);
+}
+
+int create_connection(char *ip, char* puerto, char* modulo, t_log* logger) {
+    struct addrinfo hints, *server_info;
+
+    memset(&hints, 0, sizeof(hints));
+    hints.ai_family = AF_UNSPEC;
+    hints.ai_socktype = SOCK_STREAM;
+    hints.ai_flags = AI_PASSIVE;
+
+    getaddrinfo(ip, puerto, &hints, &server_info);
+
+    // Vamos a crear el socket.
+    int client = socket(server_info->ai_family,
+            server_info->ai_socktype,
+            server_info->ai_protocol);
+
+    int val = 1;
+    setsockopt(client, SOL_SOCKET, SO_REUSEADDR, &val, sizeof(val));
+
+    // Ahora que tenemos el socket, vamos a conectarlo
+    CHECK_INT(connect(client, server_info->ai_addr, server_info->ai_addrlen));
+
+    uint32_t handshake = 1;
+    uint32_t result;
+
+    send(client, &handshake, sizeof(uint32_t), 0);
+    recv(client, &result, sizeof(uint32_t), MSG_WAITALL);
+
+    freeaddrinfo(server_info);
+
+    log_info(logger,_CLIENT_STARTED,modulo,puerto);
+
+    return client;
+}
+
 int receive_operation(int client) {
     operation_code cod_op;
     if(recv(client, &cod_op, sizeof(operation_code), MSG_WAITALL) > 0) {

@@ -7,7 +7,6 @@
 #include <string.h>
 #include <commons/log.h>
 
-// TODO: Testear CHECK
 // Sirve para catchear errores genericos con informacion sobre los mismos
 #define __ERROR "ERROR (%s:%d) -- %s\n" 
 

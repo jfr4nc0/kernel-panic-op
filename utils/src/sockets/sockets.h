@@ -8,6 +8,7 @@
 #include <commons/config.h>
 #include <commons/collections/list.h>
 #include <commons/log.h>
+#include <commons/string.h>
 #include <errors/errors.h>
 #include <logs/logs.h>
 
@@ -27,6 +28,8 @@ typedef struct package{
 
 int init_server(t_config* config, char* modulo, char* key_puerto, t_log* logger);
 int wait_client(int socket_server, t_log* logger);
+int build_connection(t_config* config, char* modulo, t_log* logger);
+int create_connection(char *ip, char* puerto, char* modulo, t_log* logger);
 int receive_operation(int client);
 void* receive_buffer(int* size, int client);
 t_list* receive_package(int client);
